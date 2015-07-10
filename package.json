@@ -1,0 +1,26 @@
+{
+  "name": "adwords.js",
+  "version": "0.0.0",
+  "description": "Google AdWords AWQL Client",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec --timeout 5000 test/**/*.js"
+  },
+  "keywords": [
+    "google",
+    "adwords"
+  ],
+  "author": "Ryan Fink <ryanjfink@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "adwords-auth": "^0.0.10",
+    "bluebird": "^2.9.30",
+    "lodash": "^3.9.3",
+    "superagent": "^1.2.0",
+    "superagent-bluebird-promise": "^2.0.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^7.0.2"
+  }
+}
