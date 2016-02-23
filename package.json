@@ -1,6 +1,6 @@
 {
   "name": "adwords.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Google AdWords AWQL Client",
   "main": "lib/index.js",
   "scripts": {
