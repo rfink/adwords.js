@@ -15,6 +15,7 @@
   "dependencies": {
     "adwords-auth": "^0.0.10",
     "bluebird": "^2.9.30",
+    "csv-parse": "^1.0.2",
     "lodash": "^3.9.3",
     "superagent": "^1.2.0",
     "superagent-bluebird-promise": "^2.0.2"
