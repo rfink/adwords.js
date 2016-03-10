@@ -16,7 +16,7 @@ describe('AWQL tests', function() {
         'Impressions',
         'Clicks',
         'Cost',
-        'ConversionsManyPerClick',
+        'Conversions',
         'ConversionValue',
         'CampaignName',
         'AdGroupName',

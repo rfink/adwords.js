@@ -1,6 +1,10 @@
 adwords.js changelog
 ====================
 
+# 1.0.0 #
+- Upgrade default version to v201509
+- Update test to remove ConversionsManyPerClick, field was deprecated
+
 # 0.0.2 #
 - Hotfix release - lowercase column names as with 0.0.0
 
