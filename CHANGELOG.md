@@ -1,6 +1,9 @@
 adwords.js changelog
 ====================
 
+# 1.1.0 #
+- Upgrade default version to v201609
+
 # 1.0.0 #
 - Upgrade default version to v201509
 - Update test to remove ConversionsManyPerClick, field was deprecated
