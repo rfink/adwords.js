@@ -1,6 +1,9 @@
 adwords.js changelog
 ====================
 
+# 1.3.0 #
+- Upgrade default version to v201708
+
 # 1.1.0 #
 - Upgrade default version to v201609
 
