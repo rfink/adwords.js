@@ -1,6 +1,9 @@
 adwords.js changelog
 ====================
 
+# 1.4.0 #
+- Add "agent" option for http client
+
 # 1.3.0 #
 - Upgrade default version to v201708
 

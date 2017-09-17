@@ -1,9 +1,11 @@
 'use strict';
 
 var should = require('should');
+var Agent = require('https').Agent;
 var adwords = require('..');
 var Awql = require('../lib/awql');
 var opts = require('./test-auth.json');
+opts.agent = new Agent({ keepAlive: true });
 
 /*global describe*/
 /*global it*/
