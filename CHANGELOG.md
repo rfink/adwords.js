@@ -1,6 +1,9 @@
 adwords.js changelog
 ====================
 
+# 1.6.1 #
+- Add default and configurable timeout
+
 # 1.6.0 #
 - Bump superagent.js to latest version
 
