@@ -1,10 +1,28 @@
 'use strict';
 
-var should = require('should');
-var Agent = require('https').Agent;
-var adwords = require('..');
-var Awql = require('../lib/awql');
-var opts = require('./test-auth.json');
+const chai = require('chai');
+const nock = require('nock');
+const Agent = require('https').Agent;
+const adwords = require('..');
+const Awql = require('../lib/awql');
+const opts = require('./test-auth.json');
+const should = chai.should();
+const goodRes = `"CAMPAIGN_PERFORMANCE_REPORT (Feb 22, 2016)"
+Search Lost IS (budget),Total cost,Campaign ID,Campaign,Day
+--,3310000,838383833,"General Terms (Q1, \'16)",2016-02-22
+--,13900000,838383834,"Mens Collection (Q1, \'16)",2016-02-22
+--,3020000,838383835,Brand Terms,2016-02-22
+Total,20230000, --, --, --
+`;
+const badRes = `"CAMPAIGN_PERFORMANCE_REPORT (Feb 22, 2016)"
+Search Lost IS (budget),Total cost,Campaign ID,Campaign,Day
+--,3310000,838383833,"General "Terms (Q1, \'16)",2016-02-22
+--,13900000,838383834,"Mens Collection (Q1, \'16)",2016-02-22
+
+--,3020000,838383835,Brand Terms,2016-02-22
+Total,20230000, --, --, --
+`;
+
 opts.agent = new Agent({ keepAlive: true });
 
 /*global describe*/
@@ -12,6 +30,14 @@ opts.agent = new Agent({ keepAlive: true });
 
 describe('AWQL tests', function() {
   it('should send a request and get a response', function(done) {
+    nock('https://accounts.google.com')
+      .post('/o/oauth2/token')
+      .reply(200, {
+        access_token: 'x'
+      });
+    nock('https://adwords.google.com')
+      .post('/api/adwords/reportdownload/v201708')
+      .reply(200, goodRes);
     return adwords(opts)
       .awql()
       .select([
@@ -45,17 +71,8 @@ describe('AWQL tests', function() {
   });
 
   it('should parse correctly with weird characters', function(done) {
-    var parser = new Awql({}, null);
-    var data = [
-      '"CAMPAIGN_PERFORMANCE_REPORT (Feb 22, 2016)"',
-      'Search Lost IS (budget),Total cost,Campaign ID,Campaign,Day',
-      '--,3310000,838383833,"General Terms (Q1, \'16)",2016-02-22',
-      '--,13900000,838383834,"Mens Collection (Q1, \'16)",2016-02-22',
-      '--,3020000,838383835,Brand Terms,2016-02-22',
-      'Total,20230000, --, --, --',
-      ''
-    ].join('\n');
-    var res = parser.parse(data);
+    const parser = new Awql({}, null);
+    const res = parser.parse(goodRes);
     should.exist(res);
     res.should.have.property('data');
     res.data.should.have.length(3);
@@ -75,6 +92,43 @@ describe('AWQL tests', function() {
     res.data[2].should.have.property('campaign', 'Brand Terms');
     res.data[2].should.have.property('day', '2016-02-22');
     return done();
+  });
+
+  it('should fail with bad request', function(done) {
+    nock('https://accounts.google.com')
+      .post('/o/oauth2/token')
+      .reply(200, {
+        access_token: 'x'
+      });
+    nock('https://adwords.google.com')
+      .post('/api/adwords/reportdownload/v201708')
+      .reply(200, badRes);
+    return adwords(opts)
+      .awql()
+      .select([
+        'Impressions',
+        'Clicks',
+        'Cost',
+        'Conversions',
+        'ConversionValue',
+        'CampaignName',
+        'AdGroupName',
+        'Device',
+        'DayOfWeek',
+        'CountryCriteriaId',
+        'MetroCriteriaId',
+        'Date',
+        'AdNetworkType2'
+      ])
+      .from('GEO_PERFORMANCE_REPORT')
+      .during('20150502', '20150602')
+      .run()
+      .then(res => {
+        return done(new Error('Should have failed'));
+      })
+      .catch(err => {
+        return done();
+      });
   });
 });
 

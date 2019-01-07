@@ -17,10 +17,11 @@
     "bluebird": "^3.5.0",
     "csv-parse": "^1.0.2",
     "lodash": "^3.9.3",
-    "superagent": "^3.5.2"
+    "superagent": "^3.8.3"
   },
   "devDependencies": {
-    "mocha": "^2.2.5",
-    "should": "^7.0.2"
+    "chai": "^4.2.0",
+    "mocha": "^2.5.3",
+    "nock": "^10.0.6"
   }
 }
