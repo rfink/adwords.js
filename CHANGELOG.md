@@ -1,6 +1,9 @@
 adwords.js changelog
 ====================
 
+# 1.6.0 #
+- Bump superagent.js to latest version
+
 # 1.4.0 #
 - Add "agent" option for http client
 
