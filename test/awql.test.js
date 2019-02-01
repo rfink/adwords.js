@@ -130,6 +130,20 @@ describe('AWQL tests', function() {
         return done();
       });
   });
+
+  it('should fail on receiving HTML during a token pull', function(done) {
+    nock('https://accounts.google.com')
+      .post('/o/oauth2/token')
+      .reply(200, '<html></html>');
+    return adwords(opts)
+      .auth()
+      .then(res => {
+        throw new Error('Should have failed');
+      })
+      .catch(err => {
+        return done();
+      });
+  });
 });
 
 

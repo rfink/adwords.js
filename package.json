@@ -1,6 +1,6 @@
 {
   "name": "adwords.js",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "Google AdWords AWQL Client",
   "main": "lib/index.js",
   "scripts": {
@@ -13,7 +13,6 @@
   "author": "Ryan Fink <ryanjfink@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "adwords-auth": "^0.0.10",
     "bluebird": "^3.5.0",
     "csv-parse": "^1.0.2",
     "lodash": "^3.9.3",
