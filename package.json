@@ -1,6 +1,6 @@
 {
   "name": "adwords.js",
-  "version": "1.7.1",
+  "version": "2.0.0",
   "description": "Google AdWords AWQL Client",
   "main": "lib/index.js",
   "scripts": {
@@ -13,14 +13,13 @@
   "author": "Ryan Fink <ryanjfink@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^3.5.0",
-    "csv-parse": "^1.0.2",
-    "lodash": "^3.9.3",
-    "superagent": "^3.8.3"
+    "bluebird": "^3.5.5",
+    "csv-parse": "^4.4.3",
+    "superagent": "^5.1.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^2.5.3",
+    "mocha": "^6.1.4",
     "nock": "^10.0.6"
   }
 }
