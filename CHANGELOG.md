@@ -1,6 +1,11 @@
 adwords.js changelog
 ====================
 
+# 2.0.0 #
+- Upgrade to node 8+ (ES2015)
+- Upgrade deps to latest
+- Return a stream instead of a collection
+
 # 1.6.1 #
 - Add default and configurable timeout
 
